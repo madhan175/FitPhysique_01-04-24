@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Coaches</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(135deg, #ff4d4d, #ff1a1a);
+            padding: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            transition: background 0.3s, color 0.3s;
+            border-radius: 50px;
+        }
+
+        nav ul li a:hover {
+            background-color: white;
+            color: #ff3333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Navigation */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            nav ul li a {
+                font-size: 1.3em;
+            }
+        }
+
+        /* Coach Card Container */
+        #coaches-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            justify-content: space-around;
+        }
+
+        /* Coach Card Design */
+        .coach-card {
+            background: rgb(255, 110, 110);
+            border-radius: 12px;
+            padding: 0;
+            width: calc(30% - 40px); /* Three cards per row */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+        }
+
+        .coach-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Coach Image */
+        .coach-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* Coach Name and Info */
+        .coach-card h4 {
+            margin: 15px 0 10px;
+            padding: 0 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fce7e7;
+        }
+
+        .coach-card p {
+            margin: 5px 0;
+            padding: 0 15px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Icon Style */
+        .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* Button Style */
+        .coach-card button {
+            display: block;
+            width: 80%;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .coach-card button:hover {
+            background-color: #ff1a1a;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="coaches.html">Explore Coaches</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <div id="coaches-container">
+            <!-- Coach cards will be generated here -->
+        </div>
+    </section>
+
+    <script>
+        // Sample random data for coaches
+        const coaches = [
+            { name: 'Liam Fletcher', specialization: 'Bodybuilding', experience: '12 years', image: 'assets/Liam Fletcher.jpg' },
+            { name: 'Mia Donovan', specialization: 'CrossFit', experience: '9 years', image: 'assets/Mia Donovan.jpg' },
+            { name: 'Ethan Davis', specialization: 'Yoga', experience: '8 years', image: 'assets/Ethan Davis.jpg' },
+            { name: 'Ava Johnson', specialization: 'Pilates', experience: '7 years', image: 'assets/Ava Johnson.jpg'},
+            { name: 'James Reed', specialization: 'Martial Arts', experience: '15 years', image: 'assets/James Reed.jpg' },
+            { name: 'Sophia Brown', specialization: 'Nutrition', experience: '6 years', image: 'assets/Sophia Brown.jpg' },
+        ];
+
+        const container = document.getElementById('coaches-container');
+
+        // Function to create a coach card
+        function createCoachCard(coach, index) {
+            const card = document.createElement('div');
+            card.classList.add('coach-card');
+
+            const img = document.createElement('img');
+            img.src = coach.image;
+            img.alt = coach.name;
+            card.appendChild(img);
+
+            const name = document.createElement('h4');
+            name.textContent = coach.name;
+            card.appendChild(name);
+
+            const specialization = document.createElement('p');
+            specialization.innerHTML = `<i class="icon ri-user-heart-line"></i> Specialization: ${coach.specialization}`;
+            card.appendChild(specialization);
+
+            const experience = document.createElement('p');
+            experience.innerHTML = `<i class="icon ri-calendar-line"></i> Experience: ${coach.experience}`;
+            card.appendChild(experience);
+
+            const button = document.createElement('button');
+            button.textContent = 'View Profile';
+            button.addEventListener('click', function() {
+                // Redirect to profile page with the coach index
+                window.location.href = `profile.html?coach=${index}`;
+            });
+            card.appendChild(button);
+
+            return card;
+        }
+
+        // Generate 30 coach cards
+        for (let i = 0; i < 30; i++) {
+            const coach = coaches[i % coaches.length]; // Repeat sample data if less than 30
+            const card = createCoachCard(coach, i);
+            container.appendChild(card);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ed7474;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Container for the profile */
+        .profile-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Image of the coach */
+        .profile-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid #ff4d4d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Coach name */
+        .profile-container h2 {
+            font-size: 2.5em;
+            margin: 10px 0;
+            color: #ff4d4d;
+        }
+
+        /* Section titles */
+        .section-title {
+            font-size: 1.8em;
+            color: #ff4d4d;
+            margin: 20px 0 10px;
+            border-bottom: 2px solid #ff4d4d;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Details of the coach */
+        .profile-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        /* Individual detail card */
+        .detail-card {
+            background-color: #eaeaea;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            flex: 1 1 300px; /* Responsive width */
+            min-width: 250px; /* Minimum width for smaller screens */
+        }
+
+        /* Bold titles for details */
+        .detail-card strong {
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container" id="profileContainer">
+    <!-- Coach profile will be loaded here -->
+</div>
+
+<script>
+    // Sample detailed data for coaches
+    const coaches = [
+        {
+            name: 'Liam Fletcher',
+            age: 35,
+            position: 'Head Bodybuilding Coach',
+            specialization: 'Bodybuilding',
+            experience: '12 years',
+            salary: '$100,000 per year',
+            education: 'B.S. in Exercise Science',
+            certifications: 'Certified Strength and Conditioning Specialist',
+            achievements: '2x National Champion',
+            coachingPhilosophy: 'Empower clients through personalized training.',
+            biography: 'I have been passionate about fitness since a young age. My journey into bodybuilding began in college.',
+            availability: 'Mon-Fri, 8 AM - 6 PM',
+            location: 'Fitness Center, New York',
+            image: 'assets/Liam Fletcher.jpg',
+        },
+        {
+            name: 'Mia Donovan',
+            age: 30,
+            position: 'CrossFit Instructor',
+            specialization: 'CrossFit',
+            experience: '9 years',
+            salary: '$80,000 per year',
+            education: 'M.S. in Sports Management',
+            certifications: 'CrossFit Level 1 Trainer',
+            achievements: 'Regional CrossFit Champion',
+            coachingPhilosophy: 'Strength comes from within; I help clients find their strength.',
+            biography: 'My love for fitness began with gymnastics and evolved into CrossFit.',
+            availability: 'Tues-Sat, 6 AM - 8 PM',
+            location: 'Downtown Gym, San Francisco',
+            image: 'assets/Mia Donovan.jpg',
+        },
+        {
+            name: 'Ethan Davis',
+            age: 28,
+            position: 'Senior Yoga Trainer',
+            specialization: 'Yoga',
+            experience: '8 years',
+            salary: '$75,000 per year',
+            education: 'Yoga Alliance Certified',
+            certifications: 'RYT 200-hour Certification',
+            achievements: 'Best Yoga Instructor in 2020',
+            coachingPhilosophy: 'Yoga is not just a workout, it’s a work-in.',
+            biography: 'I discovered yoga during a stressful time in my life and it transformed me.',
+            availability: 'Mon-Fri, 9 AM - 5 PM',
+            location: 'Wellness Studio, Los Angeles',
+            image: 'assets/Ethan Davis.jpg',
+        },
+        {
+            name: 'Ava Johnson',
+            age: 32,
+            position: 'Pilates Expert',
+            specialization: 'Pilates',
+            experience: '7 years',
+            salary: '$85,000 per year',
+            education: 'B.A. in Dance',
+            certifications: 'Pilates Instructor Certification',
+            achievements: 'Pilates Trainer of the Year 2021',
+            coachingPhilosophy: 'Strength and flexibility go hand in hand.',
+            biography: 'With a background in dance, Pilates was a natural progression for me.',
+            availability: 'Wed-Sun, 10 AM - 4 PM',
+            location: 'Fitness Studio, Chicago',
+            image: 'assets/Ava Johnson.jpg',
+        },
+        {
+            name: 'James Reed',
+            age: 40,
+            position: 'Martial Arts Master',
+            specialization: 'Martial Arts',
+            experience: '15 years',
+            salary: '$120,000 per year',
+            education: 'M.A. in Physical Education',
+            certifications: 'Black Belt in Karate',
+            achievements: 'World Karate Champion',
+            coachingPhilosophy: 'Discipline and respect are the cornerstones of martial arts.',
+            biography: 'Martial arts have been a part of my life since childhood.',
+            availability: 'Mon-Sat, 7 AM - 8 PM',
+            location: 'Martial Arts Academy, Miami',
+            image: 'assets/James Reed.jpg',
+        },
+        {
+            name: 'Sophia Brown',
+            age: 29,
+            position: 'Nutritionist',
+            specialization: 'Nutrition',
+            experience: '6 years',
+            salary: '$70,000 per year',
+            education: 'M.S. in Nutrition',
+            certifications: 'Registered Dietitian Nutritionist (RDN)',
+            achievements: 'Published in Nutrition Journal',
+            coachingPhilosophy: 'Food is fuel; let’s find the best fuel for you.',
+            biography: 'I help clients achieve their health goals through personalized nutrition plans.',
+            availability: 'Tue-Sun, 10 AM - 6 PM',
+            location: 'Health & Wellness Clinic, Austin',
+            image: 'assets/Sophia Brown.jpg',
+        },
+    ];
+
+    // Function to get query string parameter
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Fetch coach index from URL
+    const coachIndex = getQueryParam('coach');
+    const coach = coaches[coachIndex % coaches.length];
+
+    // Display coach profile
+    const profileContainer = document.getElementById('profileContainer');
+    profileContainer.innerHTML = `
+        <img src="${coach.image}" alt="${coach.name}">
+        <h2>${coach.name}</h2>
+        <div class="profile-details">
+            <div class="detail-card">
+                <div class="section-title">Personal Info</div>
+                <p><strong>Age:</strong> ${coach.age}</p>
+                <p><strong>Position:</strong> ${coach.position}</p>
+                <p><strong>Specialization:</strong> ${coach.specialization}</p>
+                <p><strong>Experience:</strong> ${coach.experience}</p>
+                <p><strong>Salary:</strong> ${coach.salary}</p>
+            </div>
+            <div class="detail-card">
+                <div class="section-title">Qualifications</div>
+                <p><strong>Education:</strong> ${coach.education}</p>
+                <p><strong>Certifications:</strong> ${coach.certifications}</p>
+                <p><strong>Achievements:</strong> ${coach.achievements}</p>
+            </div>
+            <div class="detail-card">
+                <div class="section-title">Coaching Approach</div>
+                <p><strong>Philosophy:</strong> ${coach.coachingPhilosophy}</p>
+                <p><strong>Biography:</strong> ${coach.biography}</p>
+                <p><strong>Availability:</strong> ${coach.availability}</p>
+                <p><strong>Location:</strong> ${coach.location}</p>
+            </div>
+        </div>
+    `;
+</script>
+
+</body>
+</html>
